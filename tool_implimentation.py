@@ -76,10 +76,7 @@ def lookup_faq(query):
         "source_title": "FAQ System"
     }
 
-
-# -------------------------------
 # Direct Tool Calls (for testing)
-# -------------------------------
 
 if __name__ == "__main__":
     print("Testing get_time:")

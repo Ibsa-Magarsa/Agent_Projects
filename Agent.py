@@ -68,7 +68,7 @@ def run_agent():
         elif tool_name == "lookup_faq":
             tool_result = lookup_faq(**args)
             
-        #to store
+        # to store
         state["last_tool_result"] = tool_result
         update_goals(tool_name)
 
