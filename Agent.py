@@ -7,7 +7,7 @@ state = {
     "last_location":None,
 }
 def update_goals(goal):
-    """to keep the last 3 goals"""
+    """to keep the last 3 goals by creating a memory"""
     state["last_goals"].append(goal)
     if len(state["last_goals"])> 3:
         state["last_goals"].pop(0)
