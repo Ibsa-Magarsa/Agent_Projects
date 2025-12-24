@@ -4,7 +4,7 @@ from tool_implimentation import get_time, calc, lookup_faq
 state = {
     "last_goals":[],
     "last_tool_result":None,
-    "last_location":None,
+    "last_location":None
 }
 def update_goals(goal):
     """to keep the last 3 goals"""
