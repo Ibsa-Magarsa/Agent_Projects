@@ -40,8 +40,10 @@ def calc(expression):
             raise ValueError("Invalid characters in expression.")
 
         result = eval(expression)
-        return {"expression": expression, "result": result}
-
+        exp = {"expression": expression, "result": result} 
+        for n in exp:
+            return f"Expression: {expression}\nResult: {result}"
+        
     except Exception as e:
         return {"error": f"Invalid expression: {str(e)}"}
 
@@ -78,6 +80,7 @@ def lookup_faq(query):
 # -------------------------------
 # Direct Tool Calls (for testing)
 # -------------------------------
+
 if __name__ == "__main__":
     print("Testing get_time:")
     print(get_time("Cape Town"))
