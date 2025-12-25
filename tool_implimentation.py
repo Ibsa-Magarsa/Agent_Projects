@@ -1,8 +1,6 @@
 from datetime import *
 
-# -------------------------------
 # Tool 1: get_time
-# -------------------------------
 def get_time(location):
     """
     Returns the current time for a given location.
@@ -33,7 +31,6 @@ def get_time(location):
     return f"Location: {location}\nDate: {Date}\nTime: {Time} utc"
 
 # Tool 2: calc
-
 def calc(expression):
     """
     Safely evaluates a mathematical expression.

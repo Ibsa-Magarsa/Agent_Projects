@@ -12,7 +12,7 @@ def update_goals(goal):
     if not isinstance(state["last_goals"], list):
         state["last_goals"] = []
 
-    state["last_goals"].append(goal)
+        state["last_goals"].append(goal)
     if len(state["last_goals"])> 3:
         state["last_goals"].pop(0)
         
@@ -25,9 +25,6 @@ def model_decide_tool(user_input):
     Returns tool_name and arguments.
     """
     text = user_input.lower()
-    if "converter that to utc" in text and state["last_location"]:
-        return "get_time", {"location": "UTC"}
-
     if "time" in text:
         if "cape town" in text:
             return "get_time", {"location": "Cape Town"}
@@ -107,6 +104,13 @@ def run_agent():
             tool_result = lookup_faq(**args)
             
         # To store
+        if tool_name == "get_time":
+            result = get_time(**args)
+
+    # ALWAYS store last location if get_time is used
+        if "location" in args:
+            state["last_location"] = args["location"]
+
         state["last_tool_result"] = tool_result
         update_goals(tool_name)
 
@@ -119,8 +123,8 @@ def run_agent():
 
         else:
             print(f"Agent: used {tool_name}\n{tool_result}")
-            print(f"[Memory] Last goals: {state['last_goals']}")
-            print(f"[Memory] Last location: {state['last_location']}")
+        print(f"[Memory] Last goals: {state['last_goals']}")
+        print(f"[Memory] Last location: {state['last_location']}")
         continue
 
 
