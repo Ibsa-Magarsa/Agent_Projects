@@ -26,7 +26,7 @@ calc_schema = {
         "properties": {
             "expression": {
                 "type": "string",
-                "description": "Mathematical expression to evaluate (e.g., '24500 * 0.18')"
+                "description": "Mathematical expression to evaluate"
             }
         },
         "required": ["expression"]

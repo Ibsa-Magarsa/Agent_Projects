@@ -21,11 +21,16 @@ def get_time(location):
         return {"error": f"Location '{location}' is not supported."}
 
     current_time = datetime.now(locations[loc_key])
-    return {
+    data = {
         "location": location,
-        "time": current_time.strftime("%Y-%m-%d\t %H:%M:%S")
+        "current_date_time": current_time.strftime("%Y-%m-%d %H:%M:%S.%f%z"),
     }
 
+    timestamp = datetime.fromisoformat(data["current_date_time"])
+    Date = timestamp.strftime("%Y-%m-%d")
+    Time = timestamp.strftime("%H:%M:%S.%f%z")
+    Time = Time[:-2] + ":" + Time[-2:]
+    return f"Location: {location}\nDate: {Date}\nTime: {Time} utc"
 
 # Tool 2: calc
 
@@ -35,7 +40,7 @@ def calc(expression):
     """
     try:
         # Only allow numbers and basic operators
-        allowed_chars = "0123456789+-*/(). "
+        allowed_chars = "0123456789+-*/().% "
         if not all(char in allowed_chars for char in expression):
             raise ValueError("Invalid characters in expression.")
 
@@ -47,10 +52,7 @@ def calc(expression):
     except Exception as e:
         return {"error": f"Invalid expression: {str(e)}"}
 
-
-# -------------------------------
 # Tool 3: lookup_faq
-# -------------------------------
 def lookup_faq(query):
     """
     Looks up an answer from a mocked FAQ knowledge base.
